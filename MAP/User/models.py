@@ -19,15 +19,16 @@ class Person (User) :
     phone = models.CharField(max_length=10)
     city = models.CharField(max_length=20)
     zip = models.CharField(max_length=5)
-    state_id = models.ForeignKey(State, on_delete=models.CASCADE)
+    state_id = models.OneToOneField("State", on_delete=models.SET_NULL)
+    ethnicity = models.OneToOneField("Ethnicity", on_delete=models.SET_NULL)
 
     class Meta:
-        abstract = True
+        proxy = True
 
 class Organization(models.Model):
     organization_name = models.CharField(max_length=40)
     city = models.CharField(max_length=20)
-    state_id = models.ForeignKey(State, on_delete=models.CASCADE)
+    state_id = models.OneToOneField(State, on_delete=models.SET_NULL)
     email = models.EmailField(max_length=40)
     size = models.CharField(max_length=20)
     sector = models.CharField(max_length=20)
@@ -36,7 +37,7 @@ class Organization(models.Model):
         return self.organization_name
 class Organization_Admin(Person):
     title = models.CharField(max_length=20)
-    organization_id = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    organization_id = models.OneToOneField(Organization, on_delete=models.SET_NULL)
 
     def __str__ (self):
-        pass
+        return(self.first_name + '' + self.last_name)
