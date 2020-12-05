@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+<<<<<<< HEAD
+=======
 
+>>>>>>> 1201c167d0e34552634c526e894696103878b51a
 # Create your models here.
 class State(models.Model) :
     state_name = models.CharField(max_length=20)
@@ -41,3 +44,8 @@ class Organization_Admin(Person):
 
     def __str__ (self):
         return(self.first_name + '' + self.last_name)
+        pass
+
+class Applicant(Person):
+    website = models.CharField(max_length=35)
+    
