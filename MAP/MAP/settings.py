@@ -76,6 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MAP.wsgi.application'
 
+#AUTH_USER_MODEL = 'Person.User'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -84,10 +85,11 @@ DATABASES = {
 
     'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'MAP',
+    'NAME': 'map',
     'USER': 'postgres',
     'PASSWORD': 'parkergunnell',
-    'HOST': 'localhost'
+    'HOST': 'localhost',
+    'PORT': '5433',
     }
 }   
 
