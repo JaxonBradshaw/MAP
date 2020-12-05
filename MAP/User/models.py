@@ -27,7 +27,7 @@ class Person (User) :
 class Organization(models.Model):
     organization_name = models.CharField(max_length=40)
     city = models.CharField(max_length=20)
-    state_id = models.ForeignKey(State)
+    state_id = models.ForeignKey(State, on_delete=models.CASCADE)
     email = models.EmailField(max_length=40)
     size = models.CharField(max_length=20)
     sector = models.CharField(max_length=20)
@@ -36,7 +36,7 @@ class Organization(models.Model):
         return self.organization_name
 class Organization_Admin(Person):
     title = models.CharField(max_length=20)
-    organization_id = models.ForeignKey(Organization)
+    organization_id = models.ForeignKey(Organization, on_delete=models.CASCADE)
 
     def __str__ (self):
         pass
