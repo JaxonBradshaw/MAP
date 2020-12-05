@@ -1,9 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-<<<<<<< HEAD
-=======
 
->>>>>>> 1201c167d0e34552634c526e894696103878b51a
 # Create your models here.
 class State(models.Model) :
     state_name = models.CharField(max_length=20)
