@@ -22,7 +22,6 @@ from django.conf.urls import url
 urlpatterns = [
     path('', include('home.urls')),
     path('admin/', admin.site.urls),
-    path('', include('django.contrib.auth.urls')),
     path('jobs/', include('Jobs.urls')),
     path('user/', include('User.urls')),
     path('account/', include('django.contrib.auth.urls'))

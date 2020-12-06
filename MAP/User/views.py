@@ -1,19 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
+from .forms import ApplicantUserForm, OrgAdminUserForm
+from .models import Applicant, Organization_Admin
+
 # Create your views here.
 
 def indexPageView(request):
     return render(request, 'User/profile.html')
 
+def choiceView(request):
+    return render(request, 'User/choice.html')  
 
-'''def addClientFormView(request) :
-    form = addClientForms()
+def register_applicantView(request) :
+    if request.method == 'POST' :
+        form = ApplicantUserForm(request.POST)
+        if form.is_valid :
+            form.save()
+        return HttpResponse('home')
+    form = ApplicantUserForm()
     context = {
         'form': form
     }
-    return render(request, 'clientview_a/add.html', context)
+    return render(request, 'User/register/applicant.html', context)
 
-def addClientView(request) :
+def register_org_adminView(request) :
+    if request.method == 'POST' :
+        form = OrgAdminUserForm(request.POST)
+        if form.is_valid :
+            form.save()
+        return HttpResponse('home')
+    form = OrgAdminUserForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'User/register/org_admin.html', context)
+
+'''def addPerson(request) :
     if request.method == 'POST':
 
     #Create a new employee object from the model (like a new record)

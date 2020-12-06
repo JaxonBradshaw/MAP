@@ -157,7 +157,7 @@
 
 
 
-              <form role="form" method="post" action="{% url 'login' %}">
+              <form role="form" method="post" action="{% url 'register' %}">
                 {% csrf_token %}
                 <div class="form-group mb-3">
                   <div class="input-group input-group-merge input-group-alternative">
@@ -198,7 +198,7 @@
               <a href="#" class="text-light"><small>Forgot password?</small></a>
             </div>
             <div class="col-6 text-right">
-              <a href="#" class="text-light"><small>Create new account</small></a>
+              <a href="{% url 'register' %}" class="text-light"><small>Create new account</small></a>
             </div>
           </div>
         </div>
