@@ -19,8 +19,8 @@ class Person (User) :
     phone = models.CharField(max_length=10)
     city = models.CharField(max_length=20)
     zip = models.CharField(max_length=5)
-    state_id = models.OneToOneField("State", on_delete=models.CASCADE)
-    ethnicity = models.OneToOneField("Ethnicity", on_delete=models.CASCADE)
+    state_id = models.OneToOneField(State, on_delete=models.CASCADE)
+    ethnicity = models.OneToOneField(Ethnicity, on_delete=models.CASCADE)
 
 
 

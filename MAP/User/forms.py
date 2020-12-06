@@ -166,4 +166,4 @@ class OrgAdminUserForm(UserCreationForm):
 
     class Meta:
         model = Applicant
-        fields = ('first_name','last_name', 'username', 'email', 'password1' ,'password2', 'title')
+        fields = ('first_name','last_name', 'username', 'email', 'password1' ,'password2', 'phone', 'city', 'zip', 'state', 'ethnicity', 'title', 'organization')
