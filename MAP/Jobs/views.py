@@ -23,3 +23,12 @@ def joblistingdetailsPageView(request, joblistingID) :
     }
 
     return render(request, 'Jobs/job_listing_details.html', context)
+
+def editjoblistingPageView(request, joblistingID) :
+    data = Job_Listing.objects.get(id=joblistingID)
+
+    context = {
+        "joblisting" : data
+    }
+
+    return render(request, 'Jobs/edit_job_listing.html', context)
