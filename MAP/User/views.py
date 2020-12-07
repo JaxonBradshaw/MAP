@@ -20,7 +20,7 @@ def register_applicantView(request) :
         if form.is_valid() :
             #form.type = "Applicant" add later
             form.save()
-            return redirect(login)
+            return redirect('/account/login')
         context = {
             'form': form
         }
@@ -32,7 +32,7 @@ def register_org_adminView(request) :
         form = OrgAdminUserForm(request.POST)
         if form.is_valid() :
             form.save()
-            return render(request, 'registration/login.html')
+            return redirect('/account/login')
     context = {
         'form': form
     }
@@ -58,4 +58,19 @@ def profileView(request) :
         
         return render(request, 'User/profile.html', context)
     else:
-        return redirect('django.contrib.auth.login' )
+        return redirect('/account/login')
+
+def viewApplicantsView(request):
+    data = Applicant.objects.all()
+    context = {
+        "applicant" : data
+    }
+    return render(request, 'User/applicants.html', context)
+
+def viewOrgAdminView(request):
+    data = Organization_Admin.objects.all()
+
+    context = {
+        "orgadmin" : data
+    }
+    return render(request, 'User/orgadmins.html', context)
