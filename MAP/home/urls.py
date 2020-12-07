@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import indexPageView
+from .views import indexPageView, aboutusPageView
 
 urlpatterns = [
-    path("", indexPageView, name="landing")    
+    path("", indexPageView, name="landingpage"),
+    path("about/", aboutusPageView, name="aboutus")   
 ]   
