@@ -14,3 +14,12 @@ def joblistingPageView(request) :
         "joblisting" : data
     }
     return render(request, "Jobs/job_listing.html", context)
+
+def joblistingdetailsPageView(request, joblistingID) :
+    data = Job_Listing.objects.get(id=joblistingID)
+
+    context = {
+        "joblisting" : data
+    }
+
+    return render(request, 'Jobs/job_listing_details.html', context)
