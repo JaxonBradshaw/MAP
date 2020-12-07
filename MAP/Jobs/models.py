@@ -1,5 +1,5 @@
 from django.db import models
-from User.models import Organization_Admin, Applicant, Organization
+from User.models import Organization
 # Create your models here.
 
 '''class Job_Application (models.Model):
