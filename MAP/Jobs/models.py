@@ -12,11 +12,11 @@ class Job_Listing (models.Model):
     skills = models.CharField(max_length=30)
     total_skills = models.IntegerField()
     skill_value_rating = models.IntegerField()
-    external_app_link = models.URLField(max_length=50)
+    external_app_link = models.CharField(max_length=50, null=True, blank=True)
     organization_id = models.ForeignKey(Organization, on_delete=models.CASCADE)
 
-    def __str__(self):
-        pass
+    #def __str__(self):
+        #pass
 
 class Job_Application (models.Model):
     #figure out where to upload to
