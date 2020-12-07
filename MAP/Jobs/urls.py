@@ -3,5 +3,5 @@ from .views import indexPageView, joblistingPageView
 
 urlpatterns = [
     path("", indexPageView, name="landing"),
-    path("", joblistingPageView, name="job_listing")    
+    path("joblisting/", joblistingPageView, name="job_listing")    
 ]   
