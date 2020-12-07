@@ -24,18 +24,18 @@
           <div class="card">
             <!-- Card header -->
             <div class="card-header border-0">
-              <h3 class="mb-0">Light table</h3>
+              <h3 class="mb-0">Jobs</h3>
             </div>
             <!-- Light table -->
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Name</th>
                     <th scope="col">Title</th>
                     <th scope="col">City</th>
                     <th scope="col">State</th>
-                    <th scope="col">Phone</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Total Skills</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -43,19 +43,20 @@
                 {% for listing in joblisting %}
                   <tr>
                     <td>
-                      {{joblisting.}} {{joblisting.}}
+                      {{listing.job_title}}
                     </td>
                     <td>
-                      {{joblisting.}}
+                      {{listing.city}}
                     </td>
                     <td>
-                      {{joblisting.}}
+                      {{listing.state_id}}
                     </td>
                     <td>
-                      {{joblisting.}}
+                      {{listing.description}}
                     </td>
+                    
                     <td>
-                      {{joblisting.}}
+                      {{listing.total_skills}}
                     </td>
                     <td class="text-right">
                       <div class="dropdown">
