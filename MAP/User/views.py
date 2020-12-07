@@ -21,10 +21,10 @@ def register_applicantView(request) :
             #form.type = "Applicant" add later
             form.save()
             return redirect('/account/login')
-        context = {
-            'form': form
-        }
-        return render(request, 'User/register/applicant.html', context)
+    context = {
+        'form': form
+    }
+    return render(request, 'User/register/applicant.html', context)
 
 def register_org_adminView(request) :
     form = OrgAdminUserForm(request.POST or None)
