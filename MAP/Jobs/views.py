@@ -5,3 +5,6 @@ from django.http import HttpResponse
 
 def indexPageView(request) :
     return HttpResponse("Hello")
+
+def joblistingPageView(request) :
+    return render(request, "Jobs/job_listing.html")

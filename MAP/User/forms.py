@@ -1,6 +1,11 @@
 from django import forms
-from .models import Applicant, State, Ethnicity, Organization
+from .models import Applicant, State, Ethnicity, Organization, Organization_Admin
 from django.contrib.auth.forms import UserCreationForm
+
+TYPE = {
+    ('organization_admin', 'Organization Admin'),
+    ('applicant', 'Applicant')
+}
 
 class ApplicantUserForm(UserCreationForm):
     phone = forms.CharField(max_length=10)
@@ -8,6 +13,10 @@ class ApplicantUserForm(UserCreationForm):
     zip = forms.CharField(max_length=5)
     state = forms.ModelChoiceField(queryset=State.objects.all(), initial=0)
     ethnicity = forms.ModelChoiceField(queryset=Ethnicity.objects.all(), initial=0)
+    #country = forms.CharField(max_length=20)
+    type = forms.CharField(max_length=20, widget=forms.Select(choices=TYPE))
+    #bio = forms.CharField(max_length=20)
+    #profile_picture = forms.ImageField()  add a media folder
     website = forms.URLField(max_length=300)
     skills = forms.CharField(max_length=1000)
     skill_ai = forms.IntegerField(max_value=4, min_value=0)
@@ -161,9 +170,13 @@ class OrgAdminUserForm(UserCreationForm):
     zip = forms.CharField(max_length=5)
     state = forms.ModelChoiceField(queryset=State.objects.all(), initial=0)
     ethnicity = forms.ModelChoiceField(queryset=Ethnicity.objects.all(), initial=0)
+    #country = forms.CharField(max_length=20)
+    type = forms.CharField(max_length=20, widget=forms.Select(choices=TYPE))
+    #bio = forms.CharField(max_length=20)
+    #profile_picture = forms.ImageField()  add a media folder
     title = forms.CharField(max_length=50)
-    organization = forms.ModelChoiceField(queryset=Organization.objects.all(), initial=0)
+    organization_id = forms.ModelChoiceField(queryset=Organization.objects.all(), initial=0)
 
     class Meta:
-        model = Applicant
-        fields = ('first_name','last_name', 'username', 'email', 'password1' ,'password2', 'title')
+        model = Organization_Admin
+        fields = ('first_name','last_name', 'username', 'email', 'password1' ,'password2', 'phone', 'city', 'zip', 'state', 'ethnicity', 'title', 'organization_id', 'type')
