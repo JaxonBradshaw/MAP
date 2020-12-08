@@ -1,5 +1,5 @@
 from django import forms
-from .models import Job_Listing, State, Organization, Organization_Admin
+from .models import State, Organization, Organization_Admin,  Job_Listing
 
 SKILLS = {
     ('django', 'Django'),
