@@ -18,7 +18,6 @@ def register_applicantView(request) :
     if request.method == 'POST' :
         form = ApplicantUserForm(request.POST)
         if form.is_valid() :
-            #form.type = "Applicant" add later
             form.save()
             return redirect('/account/login')
     context = {
