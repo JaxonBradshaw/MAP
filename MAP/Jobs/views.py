@@ -49,3 +49,14 @@ def registerJobListingView(request) :
         'form': form
     }
     return render(request, 'Jobs/add_job_listing.html', context)
+
+def deleteJobListingView(request, joblistingID) :
+    joblisting = Job_Listing.objects.get(id=joblistingID)
+    joblisting.delete()
+    data = Job_Listing.objects.all()
+
+    context = {
+        "joblisting" : data
+    }
+
+    return render(request, "jobs/job_listing.html", context)
