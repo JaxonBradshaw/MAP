@@ -5,7 +5,7 @@ from User.models import Organization, State, Organization_Admin, Applicant
 class Job_Listing (models.Model):
     city = models.CharField(max_length=30)
     state_id = models.ForeignKey(State, on_delete=models.CASCADE)
-    job_title = models.CharField(max_length=20)
+    job_title = models.CharField(max_length=40)
     org_admin_id = models.ForeignKey(Organization_Admin, on_delete=models.CASCADE)
     contracts = models.CharField(max_length=30)
     description = models.CharField(max_length=30)
