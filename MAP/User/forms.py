@@ -32,11 +32,7 @@ SKILLS = {
     ('consulting','Consulting'),
     ('content_marketing','Content Marketing'),
     ('control_systems','Control Systems'),
-<<<<<<< HEAD
-    ('critical_thinking ','Critical Thinking'),
-=======
     ('critical_thinking ','Critical Thinking'),
->>>>>>> 34544f1ecf3fa2ba657df367ebb09ab8e525cd0f
     ('customer_service','Customer Service'),
     ('data_analysis','Data Analysis'),
     ('data_analytics','Data Analytics'),
