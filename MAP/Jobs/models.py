@@ -15,8 +15,8 @@ class Job_Listing (models.Model):
     external_app_link = models.CharField(max_length=50, null=True, blank=True)
     organization_id = models.ForeignKey(Organization, on_delete=models.CASCADE)
 
-    #def __str__(self):
-        #pass
+    def __str__(self):
+        return(self.job_title)
 
 class Job_Application (models.Model):
     #figure out where to upload to
@@ -31,7 +31,7 @@ class Job_Application (models.Model):
     job_listing_id = models.ForeignKey(Job_Listing, on_delete=models.CASCADE)
 
     def __str__(self):
-        pass
+        return(self.applicant_id)
 
 class Job_Offer (models.Model):
     city = models.CharField(max_length=30)
@@ -45,7 +45,7 @@ class Job_Offer (models.Model):
     total_skills = models.IntegerField()
 
     def __str__(self):
-        pass
+        return(self.job_title)
 
 
 
