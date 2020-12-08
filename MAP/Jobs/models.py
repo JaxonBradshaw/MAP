@@ -5,7 +5,7 @@ from User.models import Organization, State, Organization_Admin, Applicant
 class Job_Listing (models.Model):
     city = models.CharField(max_length=30)
     state_id = models.ForeignKey(State, on_delete=models.CASCADE)
-    job_title = models.CharField(max_length=20)
+    job_title = models.CharField(max_length=40)
     org_admin_id = models.ForeignKey(Organization_Admin, on_delete=models.CASCADE)
     contracts = models.CharField(max_length=30)
     description = models.CharField(max_length=30)
@@ -20,18 +20,19 @@ class Job_Listing (models.Model):
 
 class Job_Application (models.Model):
     #figure out where to upload to
+    application_name = models.CharField(max_length=30)
     resume = models.FileField(upload_to='Resumes')
-    citizen = models.IntegerField()
-    authorized = models.IntegerField()
-    felony = models.IntegerField()
-    felony_desc = models.CharField(max_length=30)
-    start_date = models.DateField()
+    citizen = models.IntegerField(verbose_name='Are you a citizen of the United States?')
+    authorized = models.IntegerField(verbose_name='Are you authorized to work in the US?')
+    felony = models.IntegerField(verbose_name='Have you been convicted of a felony?')
+    felony_desc = models.CharField(max_length=30, verbose_name='Description of Felony')
+    start_date = models.DateField(verbose_name='Date available to start working')
     orgization_id = models.ForeignKey(Organization, on_delete=models.CASCADE)
     applicant_id = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     job_listing_id = models.ForeignKey(Job_Listing, on_delete=models.CASCADE)
 
     def __str__(self):
-        return(self.applicant_id)
+        return(self.application_name)
 
 class Job_Offer (models.Model):
     city = models.CharField(max_length=30)

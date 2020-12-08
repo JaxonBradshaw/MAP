@@ -156,10 +156,10 @@ class ApplicantUserForm(UserCreationForm):
     zip = forms.CharField(max_length=5)
     state = forms.ModelChoiceField(queryset=State.objects.all(), initial=0)
     ethnicity = forms.ModelChoiceField(queryset=Ethnicity.objects.all(), initial=0)
-    #country = forms.CharField(max_length=20)
+    country = forms.CharField(max_length=20)
     type = forms.CharField(max_length=20, widget=forms.Select(choices=TYPE))
-    #bio = forms.CharField(max_length=20)
-    #profile_picture = forms.ImageField()  add a media folder
+    bio = forms.CharField(max_length=20)
+    profile_picture = forms.ImageField()
     website = forms.URLField(max_length=300)
     
 
