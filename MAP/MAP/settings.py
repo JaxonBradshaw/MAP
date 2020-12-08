@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'Jobs.apps.JobsConfig',
     'User.apps.UserConfig',
+    'ml_examples.apps.AzurewebserviceConfig',
 
 ]
 

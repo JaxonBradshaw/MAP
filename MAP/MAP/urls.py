@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('jobs/', include('Jobs.urls')),
     path('user/', include('User.urls')),
-    path('account/', include('django.contrib.auth.urls'))
+    path('account/', include('django.contrib.auth.urls')),
+    path('dreamjobs/', include('ml_examples.urls')),
 ]
 
