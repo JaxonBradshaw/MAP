@@ -8,7 +8,7 @@ SKILLS = {
     ('iphone', 'iPhone'),
     ('excel', 'Excel')
 }
-class JobListingForm(forms.ModelForm):
+class JobListingForm(forms.Form):
     city = forms.CharField(max_length=30)
     state_id = forms.ModelChoiceField(queryset=State.objects.all())
     job_title = forms.CharField(max_length=20)
