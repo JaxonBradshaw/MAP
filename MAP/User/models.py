@@ -24,7 +24,7 @@ class Person (User) :
     ethnicity = models.ForeignKey(Ethnicity, on_delete=models.CASCADE)
     type = models.CharField(max_length=20)
     bio = models.CharField(max_length=200)
-    profile_picture = models.ImageField()
+    profile_picture = models.ImageField(upload_to='pictures')
 
     def __str__ (self):
         return(self.first_name + " " +self.last_name)

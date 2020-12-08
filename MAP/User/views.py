@@ -38,26 +38,41 @@ def register_org_adminView(request) :
     return render(request, 'User/register/org_admin.html', context)
 
 def profileView(request) :
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    person = Person.objects.get(username=username)
-    if user is not None:
-        if person.type=='applicant':
-            applicant = Applicant.objects.get(id = user.id)
-            context = {
-                'user' : applicant,
-            }
+    currentuser = request.user
+    user = authenticate(request, credentials=currentuser)
+    person = Person.objects.get(username=currentuser.username)
+    if request.method == 'POST' :
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        person = Person.objects.get(username=username)
+        if user is not None:
+            if person.type=='applicant':
+                applicant = Applicant.objects.get(id = user.id)
+                context = {
+                    'user' : applicant,
+                }
+            else:
+                orgadmin = Organization_Admin.objects.get(id = user.id)
+                context = {
+                    'user' : orgadmin,
+                }
+            login(request, user)
+            
+            return render(request, 'User/profile.html', context)
         else:
-            orgadmin = Organization_Admin.objects.get(id = user.id)
-            context = {
-                'user' : orgadmin,
-            }
-        login(request, user)
-        
-        return render(request, 'User/profile.html', context)
+            return redirect('/account/login')
+    if person.type=='applicant':
+        applicant = Applicant.objects.get(id = currentuser.id)
+        context = {
+            'user' : applicant,
+        }
     else:
-        return redirect('/account/login')
+        orgadmin = Organization_Admin.objects.get(id = currentuser.id)
+        context = {
+            'user' : orgadmin,
+        } 
+    return render(request, 'User/profile.html', context)
 
 def viewApplicantsView(request):
     data = Applicant.objects.all()

@@ -166,7 +166,7 @@ class ApplicantUserForm(UserCreationForm):
 
     class Meta:
         model = Applicant
-        fields = ('first_name','last_name', 'username', 'email', 'password1' ,'password2', 'phone', 'city', 'zip', 'state', 'ethnicity', 'country', 'type', 'bio', 'skills', 'website' )
+        fields = ('first_name','last_name', 'username', 'email', 'password1' ,'password2', 'phone', 'city', 'zip', 'state', 'ethnicity', 'country', 'type', 'bio', 'skills', 'website')
 
 class OrgAdminUserForm(UserCreationForm):
     phone = forms.CharField(max_length=10)
