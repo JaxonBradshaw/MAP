@@ -32,7 +32,11 @@ SKILLS = {
     ('consulting','Consulting'),
     ('content_marketing','Content Marketing'),
     ('control_systems','Control Systems'),
+<<<<<<< HEAD
     ('critical_thinking ','Critical Thinking'),
+=======
+    ('critical_thinking ','Critical Thinking'),
+>>>>>>> 34544f1ecf3fa2ba657df367ebb09ab8e525cd0f
     ('customer_service','Customer Service'),
     ('data_analysis','Data Analysis'),
     ('data_analytics','Data Analytics'),
@@ -154,18 +158,19 @@ class ApplicantUserForm(UserCreationForm):
     phone = forms.CharField(max_length=10)
     city = forms.CharField(max_length=20)
     zip = forms.CharField(max_length=5)
-    state = forms.ModelChoiceField(queryset=State.objects.all(), initial=0)
-    ethnicity = forms.ModelChoiceField(queryset=Ethnicity.objects.all(), initial=0)
+    state = forms.ModelChoiceField(queryset=State.objects.all())
+    ethnicity = forms.ModelChoiceField(queryset=Ethnicity.objects.all())
     country = forms.CharField(max_length=20)
     type = forms.CharField(max_length=20, widget=forms.Select(choices=TYPE))
-    bio = forms.CharField(max_length=20)
-    profile_picture = forms.ImageField()
+    bio = forms.CharField(max_length=100)
+    #profile_picture = forms.ImageField()
+    skills = forms.MultipleChoiceField(choices=SKILLS, widget=forms.CheckboxSelectMultiple())
     website = forms.URLField(max_length=300)
     
 
     class Meta:
         model = Applicant
-        fields = ('first_name','last_name', 'username', 'email', 'password1' ,'password2' )
+        fields = ('first_name','last_name', 'username', 'email', 'password1' ,'password2', 'phone', 'city', 'zip', 'state', 'ethnicity', 'country', 'type', 'bio', 'skills', 'website' )
 
 class OrgAdminUserForm(UserCreationForm):
     phone = forms.CharField(max_length=10)
@@ -173,9 +178,9 @@ class OrgAdminUserForm(UserCreationForm):
     zip = forms.CharField(max_length=5)
     state = forms.ModelChoiceField(queryset=State.objects.all(), initial=0)
     ethnicity = forms.ModelChoiceField(queryset=Ethnicity.objects.all(), initial=0)
-    #country = forms.CharField(max_length=20)
+    country = forms.CharField(max_length=20)
     type = forms.CharField(max_length=20, widget=forms.Select(choices=TYPE))
-    #bio = forms.CharField(max_length=20)
+    bio = forms.CharField(max_length=20)
     #profile_picture = forms.ImageField()  add a media folder
     title = forms.CharField(max_length=50)
     organization_id = forms.ModelChoiceField(queryset=Organization.objects.all(), initial=0)
