@@ -18,7 +18,6 @@ class ApplicantUserForm(UserCreationForm):
     #bio = forms.CharField(max_length=20)
     #profile_picture = forms.ImageField()  add a media folder
     website = forms.URLField(max_length=300)
-    skills = forms.CharField(max_length=1000)
     skill_ai = forms.IntegerField(max_value=4, min_value=0)
     skill_ajax = forms.IntegerField(max_value=4, min_value=0)
     skill_analytical = forms.IntegerField(max_value=4, min_value=0)
