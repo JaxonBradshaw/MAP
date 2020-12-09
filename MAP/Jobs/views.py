@@ -90,4 +90,4 @@ def applyView(request):
     return render(request, "Jobs/apply.html", context)
 
 def jobSkillsView(request):
-    return HttpResponse("Hello World")
+    return render(request, "User/job_skills.html")

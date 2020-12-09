@@ -124,7 +124,7 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Dream Job</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Job Skills</h6>
             </div>
           </div>
         </div>
@@ -140,17 +140,17 @@
               </div>
             </div>
             <div class="card-body">
-              <form action="{% url 'dream_job' %}" method="post">
+              <form action="{% url 'job_skills' %}" method="post" value="Communication">
               {% csrf_token %}
                 <table class="table align-items-center table-flush">
                   <tr>
                     <td colspan="2">
-                      <h3>Let's find your dream job!</h3>
+                      <h3>Let's find jobs that match your skill set!</h3>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      {{ form.as_table }}
+                      {% comment %} {{ form.as_table }} {% endcomment %}
                     </td>
                   </tr>
                   <tr>
@@ -163,21 +163,21 @@
 
                 </table>
               </form>
-              {% if check == True %}
+              {% comment %} {% if check == True %} {% endcomment %}
               <div class="card">
-                <div class="card-body">{{value1}}</div>
+                <div class="card-body">Area Sales Manager dans une multinationale H/F</div>
               </div>
               <div class="card">
-                <div class="card-body">{{value2}}</div>
+                <div class="card-body">Ingénieur mécatronique (f/h)</div>
               </div>
               <div class="card">
-                <div class="card-body">{{value3}}</div>
+                <div class="card-body">Stagiaire (H/F) Ingénieur Qualité (6 mois) (35)</div>
               </div>
               <div class="card">
-                <div class="card-body">{{value4}}</div>
+                <div class="card-body">Directeur delivery - centre de prod h/f</div>
               </div>
               <div class="card">
-                <div class="card-body">{{value5}}</div>
+                <div class="card-body">Responsable du Service Clients H/F</div>
               </div>
               {% endif %}
             </div>
