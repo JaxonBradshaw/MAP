@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'uhmd1ked8f7(dd3w$mi%&c(((fi5jp*a2+ovv_buajwi162vy6'
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'uhmd1ked8f7(dd3w$mi%&c(((fi5jp*a2+ovv_buajwi162vy6'
+#SECRET_KEY = os.environ.get('SECRET_KEY')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')   
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'User.apps.UserConfig',
     'ml_examples.apps.AzurewebserviceConfig',
     'whitenoise.runserver_nostatic',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 
 ]
 
@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 LOGIN_REDIRECT_URL = '/home'
