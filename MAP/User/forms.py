@@ -150,6 +150,8 @@ SKILLS = {
     ('wordpress','Wordpress')
 }
 
+
+
 class ApplicantUserForm(UserCreationForm):
     phone = forms.CharField(max_length=10)
     city = forms.CharField(max_length=20)
@@ -160,7 +162,7 @@ class ApplicantUserForm(UserCreationForm):
     type = forms.CharField(max_length=20, widget=forms.Select(choices=TYPE))
     bio = forms.CharField(max_length=100)
     #profile_picture = forms.ImageField()
-    skills = forms.MultipleChoiceField(choices=SKILLS, widget=forms.CheckboxSelectMultiple())
+    skills = forms.MultipleChoiceField(choices=SKILLS, widget=forms.SelectMultiple(),)
     website = forms.URLField(max_length=300)
     
 
@@ -184,3 +186,4 @@ class OrgAdminUserForm(UserCreationForm):
     class Meta:
         model = Organization_Admin
         fields = ('first_name','last_name', 'username', 'email', 'password1' ,'password2', 'phone', 'city', 'zip', 'state', 'ethnicity', 'title', 'organization_id', 'type')
+

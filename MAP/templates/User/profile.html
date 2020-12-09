@@ -8,7 +8,7 @@
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="{% static '/img/brand/blue.png' %}" class="navbar-brand-img" alt="...">
+          <!--<img src="{% static '/img/brand/blue.png' %}" class="navbar-brand-img" alt="...">-->
         </a>
       </div>
       <div class="navbar-inner">
@@ -29,7 +29,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'view_dream_job' %}">
+              <a class="nav-link" href="{% url 'dream_job' %}">
                 <i class="ni ni-spaceship"></i>
                 <span class="nav-link-text">Dream Job</span>
               </a>
@@ -89,7 +89,7 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{% static '/img/theme/team-1.jpg' %}">
+                    <img alt="Image placeholder" src="http://127.0.0.1:8000/media/{{user.profile_picture}}">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">{{user.first_name}} {{user.last_name}}</span>
@@ -117,7 +117,7 @@
                   <span>Support</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#!" class="dropdown-item">
+                <a href="{% url 'logout' %}" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>
                 </a>
@@ -138,7 +138,7 @@
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">{{user.first_name}} {{user.last_name}}</h1>
             <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-            <a href="#" class="btn btn-neutral">Edit profile</a>
+            <a href="{% url 'edit' %}" class="btn btn-neutral">Edit profile</a>
           </div>
         </div>
       </div>
@@ -153,7 +153,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="{% static '/img/theme/team-1.jpg' %}" class="rounded-circle">
+                    <img src="http://127.0.0.1:8000/media/{{user.profile_picture}}" class="rounded-circle" >
                   </a>
                 </div>
               </div>
@@ -212,13 +212,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Username</label>
-                        <input type="text" id="input-username" class="form-control" placeholder="Username" value={{user.username}} >
+                        <input type="text" id="input-username" class="form-control" placeholder="Username" value={{user.username}} readonly>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email address</label>
-                        <input type="email" id="input-email" class="form-control" value={{user.email}} >
+                        <input type="email" id="input-email" class="form-control" value={{user.email}} readonly>
                       </div>
                     </div>
                   </div>
@@ -226,13 +226,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">First name</label>
-                        <input type="text" id="input-first-name" class="form-control" placeholder="First name" value={{user.first_name}} >
+                        <input type="text" id="input-first-name" class="form-control" placeholder="First name" value={{user.first_name}} readonly>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-last-name">Last name</label>
-                        <input type="text" id="input-last-name" class="form-control" placeholder="Last name" value={{user.last_name}} >
+                        <input type="text" id="input-last-name" class="form-control" placeholder="Last name" value={{user.last_name}} readonly>
                       </div>
                     </div>
                   </div>
@@ -245,7 +245,7 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-city">Phone</label>
-                        <input type="text" id="input-phone" class="form-control" placeholder="Phone" value={{user.phone}} >
+                        <input type="text" id="input-phone" class="form-control" placeholder="Phone" value={{user.phone}} readonly>
                       </div>
                     </div>
                   </div>
@@ -253,19 +253,19 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-city">City</label>
-                        <input type="text" id="input-city" class="form-control" placeholder="City" value={{user.city}} >
+                        <input type="text" id="input-city" class="form-control" placeholder="City" value={{user.city}} readonly>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">State</label>
-                        <input type="text" id="input-state" class="form-control" placeholder="State" value={{user.state}} >
+                        <input type="text" id="input-state" class="form-control" placeholder="State" value={{user.state}} readonly>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Postal code</label>
-                        <input type="number" id="input-postal-code" class="form-control" value={{user.zip}} >
+                        <input type="number" id="input-postal-code" class="form-control" value={{user.zip}} readonly>
                       </div>
                     </div>
                   </div>
@@ -276,18 +276,16 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label class="form-control-label" for="input-address">Website</label>
-                      <input id="input-address" class="form-control" value="{{user.website}}" type="text" >
+                      <input id="input-address" class="form-control" value="{{user.website}}" type="text" readonly>
                     </div>
                   </div>
                 <div class="pl-lg-4">
                   <div class="form-group">
                     <label class="form-control-label">About Me</label>
-                    <textarea rows="4" class="form-control" placeholder="A few words about you ..." >A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+                    <textarea rows="4" class="form-control" placeholder="A few words about you ..." readonly>A beautiful Dashboard for Bootstrap 4. It is Free and Open Source. </textarea>
                   </div>
 
-                  <div class="text-center">
-                    <input type="submit" name="submit" class="btn btn-primary mt-4">
-                  </div>
+                  
                 </div>
               </form>
             </div>
@@ -312,13 +310,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Username</label>
-                        <input type="text" id="input-username" class="form-control" placeholder="Username" value={{user.username}} >
+                        <input type="text" id="input-username" class="form-control" placeholder="Username" value={{user.username}} readonly>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email address</label>
-                        <input type="email" id="input-email" class="form-control" value={{user.email}} >
+                        <input type="email" id="input-email" class="form-control" value={{user.email}} readonly>
                       </div>
                     </div>
                   </div>
@@ -326,13 +324,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">First name</label>
-                        <input type="text" id="input-first-name" class="form-control" placeholder="First name" value={{user.first_name}} >
+                        <input type="text" id="input-first-name" class="form-control" placeholder="First name" value={{user.first_name}} readonly>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-last-name">Last name</label>
-                        <input type="text" id="input-last-name" class="form-control" placeholder="Last name" value={{user.last_name}} >
+                        <input type="text" id="input-last-name" class="form-control" placeholder="Last name" value={{user.last_name}} readonly>
                       </div>
                     </div>
                   </div>
@@ -345,7 +343,7 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-city">Phone</label>
-                        <input type="text" id="input-phone" class="form-control" placeholder="Phone" value={{user.phone}} >
+                        <input type="text" id="input-phone" class="form-control" placeholder="Phone" value={{user.phone}} readonly>
                       </div>
                     </div>
                   </div>
@@ -353,19 +351,19 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-city">City</label>
-                        <input type="text" id="input-city" class="form-control" placeholder="City" value={{user.city}} >
+                        <input type="text" id="input-city" class="form-control" placeholder="City" value={{user.city}} readonly>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">State</label>
-                        <input type="text" id="input-state" class="form-control" placeholder="State" value={{user.state}} >
+                        <input type="text" id="input-state" class="form-control" placeholder="State" value={{user.state}} readonly>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Postal code</label>
-                        <input type="number" id="input-postal-code" class="form-control" value={{user.zip}} >
+                        <input type="number" id="input-postal-code" class="form-control" value={{user.zip}} readonly>
                       </div>
                     </div>
                   </div>
@@ -376,17 +374,15 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label class="form-control-label" for="input-address">Organizaiton</label>
-                      <input id="input-address" class="form-control" value="{{user.organization_id}}" type="text" >
+                      <input id="input-address" class="form-control" value="{{user.organization_id}}" type="text" readonly>
                     </div>
                   </div>
                 <div class="pl-lg-4">
                   <div class="form-group">
                     <label class="form-control-label">About Me</label>
-                    <textarea rows="4" class="form-control" placeholder="A few words about you ..." >A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+                    <textarea rows="4" class="form-control" placeholder="A few words about you ..." readonly>A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
                   </div>
-                  <div class="text-center">
-                    <input type="submit" name="submit" class="btn btn-primary mt-4">
-                  </div>
+                
                 </div>
               </form>
             </div>

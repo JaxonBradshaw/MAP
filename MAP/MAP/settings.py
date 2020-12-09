@@ -28,8 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Application definition
 
@@ -58,6 +57,7 @@ MIDDLEWARE = [
 ]
 
 LOGIN_REDIRECT_URL = '/home'
+LOGOUT_REDIRECT_URL = '/account/login'
 
 ROOT_URLCONF = 'MAP.urls'
 
@@ -92,7 +92,7 @@ DATABASES = {
     'USER': 'postgres',
     'PASSWORD': 'parkergunnell',
     'HOST': 'localhost',
-    'PORT': '5432',
+    'PORT': '5433',
     }
 }   
 
@@ -139,3 +139,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'MAP/static')
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
