@@ -7,7 +7,7 @@
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="{% static '/img/brand/blue.png' %}" class="navbar-brand-img" alt="...">
+          <!--<img src="{% static '/img/brand/blue.png' %}" class="navbar-brand-img" alt="...">-->
         </a>
       </div>
       <div class="navbar-inner">
@@ -28,13 +28,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{% url 'dream_job' %}">
                 <i class="ni ni-spaceship"></i>
                 <span class="nav-link-text">Dream Job</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{% url 'job_skills' %}">
                 <i class="ni ni-paper-diploma"></i>
                 <span class="nav-link-text">Jobs by Skill</span>
               </a>
@@ -55,6 +55,12 @@
               <a class="nav-link" href="{% url 'orgadmin' %}">
                 <i class="ni ni-world-2"></i>
                 <span class="nav-link-text">Organization Admins</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'organizations' %}">
+                <i class="ni ni-world-2"></i>
+                <span class="nav-link-text">Organizations</span>
               </a>
             </li>
           </ul>
@@ -89,7 +95,7 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{% static '/img/theme/team-1.jpg' %}">
+                    <img alt="Image placeholder" src="{% static '/img/theme/profilepicture.jpg' %}">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">{{user.first_name}} {{user.last_name}}</span>
@@ -129,28 +135,6 @@
     </nav>
   <!-- Main content -->
   <div class="main-content" id="panel">
-    <!-- Topnav -->
-    <nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Search form -->
-          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
-            <div class="form-group mb-0">
-              <div class="input-group input-group-alternative input-group-merge">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-                <input class="form-control" placeholder="Search" type="text">
-              </div>
-            </div>
-            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </form>
-          </ul>
-        </div>
-      </div>
-    </nav>
     <!-- Header -->
     <!-- Header -->
     <div class="header pb-6 d-flex align-items-center" style="min-height: 500px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
@@ -234,6 +218,7 @@
                     </div>
                   </div>
               </form>
+              <a href="{% url 'apply' %}" class="btn btn-primary mt-4">Apply</a>
             </div>
           </div>
         </div>

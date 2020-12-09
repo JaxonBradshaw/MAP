@@ -4,8 +4,8 @@ from urllib import request as r
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from .forms import ApplicantUserForm, OrgAdminUserForm
-from .models import Applicant, Organization_Admin, Person
+from .forms import ApplicantUserForm, OrgAdminUserForm, OrganizationForm
+from .models import Applicant, Organization_Admin, Person, Organization
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -42,45 +42,47 @@ def register_org_adminView(request) :
     return render(request, 'User/register/org_admin.html', context)
 
 def profileView(request) :
-    currentuser = request.user
-    user = authenticate(request, credentials=currentuser)   
-    if request.method == 'POST' :
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        person = Person.objects.get(username=username)
-        if user is not None:
+    try:
+        if request.method == "POST":
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+            person = Person.objects.get(username=username)
+            if user is not None:
+                if person.type=='applicant':
+                    applicant = Applicant.objects.get(id = user.id)
+                    context = {
+                        'user' : applicant,
+                    }
+                else:
+                    orgadmin = Organization_Admin.objects.get(id = user.id)
+                    context = {
+                        'user' : orgadmin,
+                    }
+                login(request, user)
+                
+                return render(request, 'User/profile.html', context)
+            else:
+                return redirect('/account/login')
+        else:
+            currentuser = request.user
+            user = authenticate(request, credentials=currentuser)
+            person = Person.objects.get(username=currentuser.username)
             if person.type=='applicant':
-                applicant = Applicant.objects.get(id = user.id)
+                applicant = Applicant.objects.get(id = currentuser.id)
                 context = {
-                    'user' : applicant,
+                'user' : applicant,
                 }
             else:
-                orgadmin = Organization_Admin.objects.get(id = user.id)
+                orgadmin = Organization_Admin.objects.get(id = currentuser.id)
                 context = {
-                    'user' : orgadmin,
+                'user' : orgadmin,
                 }
             login(request, user)
-            
-            return render(request, 'User/profile.html', context)
-        else:
-            return redirect('/account/login')
-    person = Person.objects.get(username=currentuser.username)
-    if person.type=='applicant':
-        applicant = Applicant.objects.get(id = currentuser.id)
-        context = {
-            'user' : applicant,
-        }
-    else:
-        orgadmin = Organization_Admin.objects.get(id = currentuser.id)
-        context = {
-            'user' : orgadmin,
-        }
-    
-    context = {
-        'user' : person,
-    }  
-    return render(request, 'User/profile.html', context)
+        return render(request, 'User/profile.html', context)
+    except:
+        return redirect('/account/login')
+
 
 def viewApplicantsView(request):
     data = Applicant.objects.all()
@@ -138,32 +140,78 @@ def logoutrequestView(request) :
 
 def editprofileView(request) :
     currentuser = request.user
-    user = authenticate(request, credentials=currentuser)   
+    user = authenticate(request, credentials=currentuser)
     person = Person.objects.get(username=currentuser.username)
-    if request.method == 'POST' :   
-        if person.type=='applicant':
-            form = ApplicantUserForm(request.POST)
-            if form.is_valid():
-                form.save()
-                applicant = Applicant.objects.get(id = user.id)
-                context = {
-                    'user' : applicant,
-                }
-                #return render(request, 'User/profile.html', context)
-                return HttpResponse('1')
+    if person.type=='applicant':   
+        applicant = Applicant.objects.get(id=currentuser.id)
+        fill = {
+            'skills':applicant.skills
+        }
+        form = ApplicantUserForm(initial=fill)
+        if request.method == 'POST':   
+            applicant.first_name = request.POST['first_name']
+            applicant.last_name = request.POST['last_name']
+            applicant.email = request.POST['email']
+            applicant.phone = request.POST['phone']
+            applicant.city = request.POST['city']
+            applicant.zip = request.POST['zip']
+            applicant.website = request.POST['website']
+            applicant.skills = request.POST.getlist('skills')
+            applicant.bio = request.POST['bio']
+            applicant.save()
+            context = {
+                'user' : applicant,
+            }
+            return render(request, 'User/profile.html', context)
         else:
-            form = OrgAdminUserForm(request.POST)
-            if form.is_valid():
-                form.save()
-                orgadmin = Organization_Admin.objects.get(id = user.id)
-                context = {
-                    'user' : orgadmin,
-                }
-                #return render(request, 'User/profile.html', context)
-                return HttpResponse('2')
-        return HttpResponse('3')
+            context = {
+                'user' : applicant,
+                'form' : form
+            }
+            return render(request, 'User/editprofile.html', context)
+    else:
+        orgadmin = Organization_Admin.objects.get(id=currentuser.id)
+        form = OrgAdminUserForm()
+        if request.method == 'POST': 
+            orgadmin.first_name = request.POST['first_name']
+            orgadmin.last_name = request.POST['last_name']
+            orgadmin.email = request.POST['email']
+            orgadmin.phone = request.POST['phone']
+            orgadmin.city = request.POST['city']
+            orgadmin.zip = request.POST['zip']
+            orgadmin.bio = request.POST['bio']
+            orgadmin.save()
+            context = {
+                'user' : orgadmin,
+            }
+            return render(request, 'User/profile.html', context)
+        else:
+            context = {
+                'user' : orgadmin,
+                'form' : form
+            }
+            return render(request, 'User/editprofile.html', context)
+
+
+def viewOrganizationsView(request):
+    data = Organization.objects.all()
     context = {
-        'user' : person,
-    }  
-    #return render(request, 'User/editprofile.html', context)
-    return HttpResponse('4')
+        "organizations" : data
+    }
+    return render(request, 'User/organizations.html', context) 
+
+
+def addOrganizationsView(request):
+    form = OrganizationForm(request.POST or None)
+    if request.method == 'POST' :
+        form = OrganizationForm(request.POST)
+        if form.is_valid() :
+            form.save()
+            return redirect('/user/register/orgadmin')
+    context = {
+        'form': form
+    }
+    return render(request, 'User/add_organization.html', context)   
+ 
+ 
+ 

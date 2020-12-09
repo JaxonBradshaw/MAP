@@ -84,7 +84,7 @@
       </div>
     </div>
   </nav>
-   <!-- Header -->
+    <!-- Header -->
   <div class="main-content" id="panel">
     <!-- Topnav -->
     <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
@@ -149,54 +149,59 @@
         </div>
       </div>
     </nav>
+    <!-- Header -->
+    <!-- Header -->
+
+    <!-- Header -->
   <div class="main-content" id="panel">  
     <div class="header bg-primary pb-6">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Organization Admins</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Organizations</h6>
             </div>
           </div>
         </div>
       </div>
-    </div> 
+    </div>
     <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col">
           <div class="card">
             <!-- Card header -->
-
+            <div class="card-header border-0">
+              <h3 class="mb-0"></h3>
+            </div>
             <!-- Light table -->
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Title</th>
                     <th scope="col">City</th>
                     <th scope="col">State</th>
-                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody class="list">
-                {% for orgadmin in orgadmin %}
+                {% for business in organizations %}
                   <tr>
                     <td>
-                      {{orgadmin.first_name}} {{orgadmin.last_name}}
+                      {{business.organization_name}}
                     </td>
                     <td>
-                      {{orgadmin.title}}
+                      {{business.city}}
                     </td>
                     <td>
-                      {{orgadmin.city}}
+                      {{business.state}}
                     </td>
                     <td>
-                      {{orgadmin.state}}
+                      {{business.email}}
                     </td>
-                    <td>
-                      {{orgadmin.phone}}
+                    <td class="text-right">
                     </td>
                   </tr>
                   {% endfor %}

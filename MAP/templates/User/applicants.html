@@ -44,13 +44,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{% url 'dream_job' %}">
                 <i class="ni ni-spaceship"></i>
                 <span class="nav-link-text">Dream Job</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{% url 'job_skills' %}">
                 <i class="ni ni-paper-diploma"></i>
                 <span class="nav-link-text">Jobs by Skill</span>
               </a>
@@ -71,6 +71,12 @@
               <a class="nav-link" href="{% url 'orgadmin' %}">
                 <i class="ni ni-world-2"></i>
                 <span class="nav-link-text">Organization Admins</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'organizations' %}">
+                <i class="ni ni-world-2"></i>
+                <span class="nav-link-text">Organizations</span>
               </a>
             </li>
           </ul>
@@ -105,7 +111,7 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{% static '/img/theme/team-1.jpg' %}">
+                    <img alt="Image placeholder" src="{% static '/img/theme/profilepicture.jpg' %}">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">{{user.first_name}} {{user.last_name}}</span>
@@ -177,7 +183,6 @@
                     <th scope="col">City</th>
                     <th scope="col">State</th>
                     <th scope="col">Phone</th>
-                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody class="list">
@@ -194,18 +199,6 @@
                     </td>
                     <td>
                       {{person.phone}}
-                    </td>
-                    <td class="text-right">
-                      <div class="dropdown">
-                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item" href="#">Detail</a>
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Delete</a>
-                        </div>
-                      </div>
                     </td>
                   </tr>
                   {% endfor %}

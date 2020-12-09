@@ -1,6 +1,6 @@
 from django import forms
 from .models import Applicant, State, Ethnicity, Organization, Organization_Admin
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 TYPE = {
     ('organization_admin', 'Organization Admin'),
@@ -149,8 +149,19 @@ SKILLS = {
     ('word','Word'),
     ('wordpress','Wordpress')
 }
+class UserLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
 
-
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'test', 'id': 'hello'}))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'test',
+            'id': 'hi',
+        }
+))
 
 class ApplicantUserForm(UserCreationForm):
     phone = forms.CharField(max_length=10)
@@ -187,3 +198,15 @@ class OrgAdminUserForm(UserCreationForm):
         model = Organization_Admin
         fields = ('first_name','last_name', 'username', 'email', 'password1' ,'password2', 'phone', 'city', 'zip', 'state', 'ethnicity', 'title', 'organization_id', 'type')
 
+
+class OrganizationForm(forms.ModelForm):
+    organization_name = forms.CharField(max_length=40)
+    city = forms.CharField(max_length=20)
+    state = forms.ModelChoiceField(queryset=State.objects.all(), initial=0)
+    email = forms.EmailField(max_length=40)
+    size = forms.CharField(max_length=20)
+    sector = forms.CharField(max_length=20)
+
+    class Meta:
+        model = Organization
+        fields = ('organization_name', 'city', 'state', 'email', 'size', 'sector')

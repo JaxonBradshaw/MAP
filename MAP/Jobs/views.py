@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Job_Listing, Job_Offer, Job_Application
-from .forms import JobListingForm
+from User.models import Person, Applicant, Organization_Admin
+from .forms import JobListingForm, ApplicationForm
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
@@ -60,3 +62,32 @@ def deleteJobListingView(request, joblistingID) :
     }
 
     return render(request, "jobs/job_listing.html", context)
+
+def applyView(request):
+    form = ApplicationForm(request.POST or None)
+    if request.method == 'POST' :
+        form = ApplicationForm(request.POST, request.FILES)
+        if form.is_valid() :
+            #handle_uploaded_file(request.FILES['resume'])
+            form.save()
+            currentuser = request.user
+            user = authenticate(request, credentials=currentuser)
+            person = Person.objects.get(username=currentuser.username)
+            if person.type=='applicant':
+                applicant = Applicant.objects.get(id = currentuser.id)
+                context = {
+                    'user' : applicant,
+                }
+            else:
+                orgadmin = Organization_Admin.objects.get(id = currentuser.id)
+                context = {
+                    'user' : orgadmin,
+                }
+            return render(request, 'User/profile.html', context)
+    context = {
+        'form': form
+    }
+    return render(request, "Jobs/apply.html", context)
+
+def jobSkillsView(request):
+    return HttpResponse("Hello World")

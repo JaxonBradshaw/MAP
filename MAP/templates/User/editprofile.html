@@ -89,7 +89,7 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{% static '/img/theme/team-1.jpg' %}">
+                    <img alt="Image placeholder" src="{% static '/img/theme/profilepicture.jpg' %}">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">{{user.first_name}} {{user.last_name}}</span>
@@ -100,22 +100,6 @@
                 <div class="dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Welcome!</h6>
                 </div>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-single-02"></i>
-                  <span>My profile</span>
-                </a>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-settings-gear-65"></i>
-                  <span>Settings</span>
-                </a>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-calendar-grid-58"></i>
-                  <span>Activity</span>
-                </a>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-support-16"></i>
-                  <span>Support</span>
-                </a>
                 <div class="dropdown-divider"></div>
                 <a href="{% url 'logout' %}" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
@@ -153,7 +137,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="{% static '/img/theme/team-1.jpg' %}" class="rounded-circle">
+                    <img src="{% static '/img/theme/profilepicture.jpg' %}" class="rounded-circle">
                   </a>
                 </div>
               </div>
@@ -205,7 +189,7 @@
               </div>
             </div>
             <div class="card-body">
-              <form method='post' action="{% url 'edit'%}">
+              <form role ='form' method='POST' action="{% url 'edit'%}">
                 {% csrf_token %}
                 <h6 class="heading-small text-muted mb-4">User information</h6>
                 <div class="pl-lg-4">
@@ -213,13 +197,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Username</label>
-                        <input type="text" id="username" class="form-control" placeholder="Username" value={{user.username}} >
+                        <input type="text" name="username" class="form-control" placeholder="Username" value={{user.username}} readonly>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email address</label>
-                        <input type="email" id="email" class="form-control" value={{user.email}} >
+                        <input type="email" name="email" class="form-control" value={{user.email}} >
                       </div>
                     </div>
                   </div>
@@ -227,13 +211,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">First name</label>
-                        <input type="text" id="first_name" class="form-control" placeholder="First name" value={{user.first_name}} >
+                        <input type="text" name="first_name" class="form-control" placeholder="First name" value={{user.first_name}} >
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-last-name">Last name</label>
-                        <input type="text" id="last_name" class="form-control" placeholder="Last name" value={{user.last_name}} >
+                        <input type="text" name="last_name" class="form-control" placeholder="Last name" value={{user.last_name}} >
                       </div>
                     </div>
                   </div>
@@ -246,7 +230,7 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-city">Phone</label>
-                        <input type="text" id="phone" class="form-control" placeholder="Phone" value={{user.phone}}>
+                        <input type="text" name="phone" class="form-control" placeholder="Phone" value={{user.phone}}>
                       </div>
                     </div>
                   </div>
@@ -254,19 +238,19 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-city">City</label>
-                        <input type="text" id="city" class="form-control" placeholder="City" value={{user.city}}>
+                        <input type="text" name="city" class="form-control" placeholder="City" value={{user.city}}>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">State</label>
-                        <input type="text" id="state" class="form-control" placeholder="State" value={{user.state}}>
+                          <input type="text" name="state" class="form-control" placeholder="State" value={{user.state}} readonly>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Postal code</label>
-                        <input type="number" id="zip" class="form-control" value={{user.zip}}>
+                        <input type="number" name="zip" class="form-control" value={{user.zip}}>
                       </div>
                     </div>
                   </div>
@@ -276,18 +260,27 @@
                 <h6 class="heading-small text-muted mb-4">About me</h6>
                   <div class="col-md-12">
                     <div class="form-group">
+                      <label class="form-control-label" for="input-address">Skills</label>
+                      <div>
+                        {{form.skills}}
+                      </div>
+                      <p>Current Skills: {{user.skills}}</p>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
                       <label class="form-control-label" for="input-address">Website</label>
-                      <input id="website" class="form-control" value="{{user.website}}" type="text">
+                      <input name="website" class="form-control" value="{{user.website}}" type="text">
                     </div>
                   </div>
                 <div class="pl-lg-4">
                   <div class="form-group">
                     <label class="form-control-label">About Me</label>
-                    <textarea rows="4" class="form-control" placeholder="A few words about you ..." id="bio" >{{user.bio}}</textarea>
+                    <textarea rows="4" class="form-control" placeholder="A few words about you ..." name="bio" >{{user.bio}}</textarea>
                   </div>
 
                   <div class="text-center">
-                    <input type="submit" name="submit" class="btn btn-primary mt-4">
+                    <input type="submit" class="btn btn-primary mt-4">
                   </div>
                 </div>
               </form>
@@ -306,7 +299,7 @@
               </div>
             </div>
             <div class="card-body">
-              <form method='post' action="{% url 'edit'%}">
+              <form role='form' method='POST' action="{% url 'edit'%}">
                 {% csrf_token %}
                 <h6 class="heading-small text-muted mb-4">User information</h6>
                 <div class="pl-lg-4">
@@ -314,13 +307,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Username</label>
-                        <input type="text" id="username" class="form-control" placeholder="Username" value={{user.username}} >
+                        <input type="text" name="username" class="form-control" placeholder="Username" value={{user.username}} readonly >
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email address</label>
-                        <input type="email" id="email" class="form-control" value={{user.email}} >
+                        <input type="email" name="email" class="form-control" value={{user.email}} >
                       </div>
                     </div>
                   </div>
@@ -328,13 +321,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">First name</label>
-                        <input type="text" id="first_name" class="form-control" placeholder="First name" value={{user.first_name}} >
+                        <input type="text" name="first_name" class="form-control" placeholder="First name" value={{user.first_name}} >
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-last-name">Last name</label>
-                        <input type="text" id="last_name" class="form-control" placeholder="Last name" value={{user.last_name}} >
+                        <input type="text" name="last_name" class="form-control" placeholder="Last name" value={{user.last_name}} >
                       </div>
                     </div>
                   </div>
@@ -347,7 +340,7 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-city">Phone</label>
-                        <input type="text" id="phone" class="form-control" placeholder="Phone" value={{user.phone}} >
+                        <input type="text" name="phone" class="form-control" placeholder="Phone" value={{user.phone}} >
                       </div>
                     </div>
                   </div>
@@ -355,19 +348,19 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-city">City</label>
-                        <input type="text" id="city" class="form-control" placeholder="City" value={{user.city}} >
+                        <input type="text" name="city" class="form-control" placeholder="City" value={{user.city}} >
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">State</label>
-                        <input type="text" id="state" class="form-control" placeholder="State" value={{user.state}} >
+                          <input type="text" name="state" class="form-control" placeholder="State" value={{user.state}} readonly >
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Postal code</label>
-                        <input type="number" id="zip" class="form-control" value={{user.zip}} >
+                        <input type="number" name="zip" class="form-control" value={{user.zip}} >
                       </div>
                     </div>
                   </div>
@@ -377,8 +370,8 @@
                 <h6 class="heading-small text-muted mb-4">About me</h6>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-address">Organizaiton</label>
-                      <input id="organization_id" class="form-control" value="{{user.organization_id}}" type="text" >
+                      <label class="form-control-label" for="input-address">Organization</label>
+                      <input name="organization_id" class="form-control" value="{{user.organization_id}}" type="text" readonly >
                     </div>
                   </div>
                 <div class="pl-lg-4">

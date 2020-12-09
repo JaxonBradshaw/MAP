@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import indexPageView, choiceView, register_applicantView, register_org_adminView, profileView, editprofileView
-from .views import viewApplicantsView, viewOrgAdminView, dreamJobView, viewDreamJobView, logoutrequestView
+from .views import viewApplicantsView, viewOrgAdminView, dreamJobView, viewDreamJobView, logoutrequestView, viewOrganizationsView, addOrganizationsView
 
 urlpatterns = [
     path("", indexPageView, name="landing"),
@@ -11,5 +11,7 @@ urlpatterns = [
     path('editprofile/', editprofileView, name='edit'),
     path('applicants/', viewApplicantsView, name='applicants'),
     path('organizationadmin/', viewOrgAdminView, name='orgadmin'),
-    path('logout/', logoutrequestView, name='logout'),  
+    path('logout/', logoutrequestView, name='logout'), 
+    path('organizations/', viewOrganizationsView, name='organizations'),
+    path('addorganization/', addOrganizationsView, name='addorganization') 
 ] 
