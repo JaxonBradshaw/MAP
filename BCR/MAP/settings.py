@@ -85,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'MAP.wsgi.application'
+WSGI_APPLICATION = 'BCR.MAP.wsgi.application'
 
 #AUTH_USER_MODEL = 'Person.User'
 
