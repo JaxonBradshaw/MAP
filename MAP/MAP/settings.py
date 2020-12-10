@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home.apps.HomeConfig',
+    'MAP.home.apps.HomeConfig',
     'Jobs.apps.JobsConfig',
     'User.apps.UserConfig',
     'ml_examples.apps.AzurewebserviceConfig',
