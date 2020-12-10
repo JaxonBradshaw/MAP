@@ -1,1 +1,1 @@
-get: gunicorn MAP.wsgi
+web: gunicorn MAP.wsgi
