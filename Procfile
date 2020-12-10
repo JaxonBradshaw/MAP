@@ -1,0 +1,1 @@
+get: gunicorn MAP.wsgi
